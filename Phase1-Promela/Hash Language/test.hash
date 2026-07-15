@@ -1,0 +1,7 @@
+adad sum = 0
+adad i = 1
+ta (i <= 5) {
+    sum = sum + i
+    i = i + 1
+}
+print(sum);
