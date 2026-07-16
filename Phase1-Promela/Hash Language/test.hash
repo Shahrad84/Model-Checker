@@ -1,7 +1,26 @@
+boole divByZero = ghalat
+boole inLoop = ghalat
+boole exitLoop = ghalat
+
 adad sum = 0
 adad i = 1
+adad x = 10
+adad y = 0
+
+inLoop = dorost
 ta (i <= 5) {
     sum = sum + i
     i = i + 1
 }
-print(sum);
+exitLoop = dorost
+inLoop = ghalat
+
+age (y != 0) bood {
+    x = x / y
+}
+vagarna {
+    divByZero = dorost
+}
+
+print(sum)
+print(x)
