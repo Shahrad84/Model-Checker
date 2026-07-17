@@ -4,6 +4,7 @@ program: (statement)* EOF;
 
 statement
     : assignment
+    | reassignment
     | ifStatement
     | whileLoop
     | printStatement
@@ -13,6 +14,10 @@ statement
 
 assignment
     : type IDENTIFIER '=' expression
+    ;
+
+reassignment
+    : IDENTIFIER '=' expression
     ;
 
 type

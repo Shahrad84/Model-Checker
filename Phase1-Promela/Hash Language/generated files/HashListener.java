@@ -37,6 +37,16 @@ public interface HashListener extends ParseTreeListener {
 	 */
 	void exitAssignment(HashParser.AssignmentContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link HashParser#reassignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterReassignment(HashParser.ReassignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link HashParser#reassignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitReassignment(HashParser.ReassignmentContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link HashParser#type}.
 	 * @param ctx the parse tree
 	 */

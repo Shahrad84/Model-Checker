@@ -51,6 +51,18 @@ public class HashBaseListener implements HashListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterReassignment(HashParser.ReassignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitReassignment(HashParser.ReassignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterType(HashParser.TypeContext ctx) { }
 	/**
 	 * {@inheritDoc}

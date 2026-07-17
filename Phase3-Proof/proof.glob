@@ -1,0 +1,82 @@
+DIGEST 1c1ce418434248c1cdf578935b2d9258
+Fproof
+R99:119 Stdlib.Strings.String <> <> lib
+R137:156 Stdlib.ZArith.ZArith <> <> lib
+def 254:256 <> Var
+R261:266 Stdlib.Strings.String <> string ind
+def 280:284 <> State
+R292:295 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R289:291 proof <> Var def
+R296:296 Corelib.Numbers.BinNums <> Z ind
+ind 310:313 <> Expr
+constr 329:332 <> ENum
+constr 350:353 <> EVar
+constr 373:376 <> EAdd
+constr 405:407 <> ELt
+R337:340 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R336:336 Corelib.Numbers.BinNums <> Z ind
+R341:344 proof <> Expr:1 ind
+R360:363 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R357:359 proof <> Var def
+R364:367 proof <> Expr:1 ind
+R384:387 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R380:383 proof <> Expr:1 ind
+R392:395 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R388:391 proof <> Expr:1 ind
+R396:399 proof <> Expr:1 ind
+R416:419 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R412:415 proof <> Expr:1 ind
+R424:427 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R420:423 proof <> Expr:1 ind
+R428:431 proof <> Expr:1 ind
+scheme 310:313 <> Expr_rect
+scheme 310:313 <> Expr_ind
+scheme 310:313 <> Expr_rec
+scheme 310:313 <> Expr_sind
+def 513:520 <> evalExpr
+R527:530 proof <> Expr ind
+binder 523:523 <> e:3
+R538:542 proof <> State def
+binder 534:534 <> s:4
+R547:547 Corelib.Numbers.BinNums <> Z ind
+R560:560 proof <> e:3 var
+R571:574 proof <> ENum constr
+R587:590 proof <> EVar constr
+R597:597 proof <> s:4 var
+R605:608 proof <> EAdd constr
+R619:619 Stdlib.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R633:637 Stdlib.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R651:651 Stdlib.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R620:627 proof <> evalExpr:5 def
+R632:632 proof <> s:4 var
+R638:645 proof <> evalExpr:5 def
+R650:650 proof <> s:4 var
+R657:659 proof <> ELt constr
+R673:677 Stdlib.ZArith.BinInt Z ltb def
+R680:687 proof <> evalExpr:5 def
+R692:692 proof <> s:4 var
+R696:703 proof <> evalExpr:5 def
+R708:708 proof <> s:4 var
+prf 806:821 <> expr_determinism
+R837:840 proof <> Expr ind
+binder 833:833 <> e:7
+R848:852 proof <> State def
+binder 844:844 <> s:8
+R864:864 Corelib.Numbers.BinNums <> Z ind
+binder 856:857 <> v1:9
+binder 859:860 <> v2:10
+R887:892 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R882:884 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R870:877 proof <> evalExpr def
+R879:879 proof <> e:7 var
+R881:881 proof <> s:8 var
+R885:886 proof <> v1:9 var
+R910:915 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R905:907 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R893:900 proof <> evalExpr def
+R902:902 proof <> e:7 var
+R904:904 proof <> s:8 var
+R908:909 proof <> v2:10 var
+R918:920 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R916:917 proof <> v1:9 var
+R921:922 proof <> v2:10 var

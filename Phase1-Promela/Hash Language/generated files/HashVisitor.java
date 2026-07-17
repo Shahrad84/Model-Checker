@@ -28,6 +28,12 @@ public interface HashVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAssignment(HashParser.AssignmentContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link HashParser#reassignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReassignment(HashParser.ReassignmentContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link HashParser#type}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
