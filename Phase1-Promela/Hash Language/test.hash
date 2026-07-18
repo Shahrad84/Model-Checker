@@ -5,22 +5,27 @@ boole exitLoop = ghalat
 adad sum = 0
 adad i = 1
 adad x = 10
-adad y = 0
+adad y = 2
+adad loopActive = 1
 
-inLoop = dorost
-ta (i <= 5) {
+ta (loopActive == 1) {
+    exitLoop = dorost  
+    inLoop = dorost
+    
     sum = sum + i
     i = i + 1
+    
+    age (i > 5) bood {
+        loopActive = 0   
+        shekan              
+    }
 }
-exitLoop = dorost
 inLoop = ghalat
 
-age (y != 0) bood {
-    x = x / y
-}
-vagarna {
+age (y == 0) bood {
     divByZero = dorost
+} vagarna {
+    sum = x / y
 }
 
 print(sum)
-print(x)

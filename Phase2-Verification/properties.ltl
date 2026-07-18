@@ -1,2 +1,8 @@
-[] (!divByZero)
-[] (inLoop -> X exitLoop)
+/* Safety Property: No division by zero */
+ltl safety { [] !divByZero }
+
+/* Liveness Property: Every loop eventually exits */
+ltl liveness { [] (inLoop -> <> exitLoop) }
+
+/* Combined property */
+ltl combined { [] !divByZero && [] (inLoop -> <> exitLoop) }

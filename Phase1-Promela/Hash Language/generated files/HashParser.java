@@ -18,8 +18,8 @@ public class HashParser extends Parser {
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
-		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, IDENTIFIER=23, NUMBER=24, 
-		WS=25;
+		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
+		IDENTIFIER=25, NUMBER=26, WS=27;
 	public static final int
 		RULE_program = 0, RULE_statement = 1, RULE_assignment = 2, RULE_reassignment = 3, 
 		RULE_type = 4, RULE_ifStatement = 5, RULE_whileLoop = 6, RULE_edameStatement = 7, 
@@ -36,15 +36,15 @@ public class HashParser extends Parser {
 		return new String[] {
 			null, "'='", "'adad'", "'boole'", "'age'", "'('", "')'", "'bood'", "'{'", 
 			"'}'", "'vagarna'", "'ta'", "'edame'", "'shekan'", "'print'", "'*'", 
-			"'/'", "'+'", "'-'", "'<'", "'>'", "'=='", "'!='"
+			"'/'", "'+'", "'-'", "'<'", "'>'", "'<='", "'>='", "'=='", "'!='"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, null, null, null, null, null, null, null, "IDENTIFIER", 
-			"NUMBER", "WS"
+			null, null, null, null, null, null, null, null, null, null, null, null, 
+			null, "IDENTIFIER", "NUMBER", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -875,7 +875,7 @@ public class HashParser extends Parser {
 						setState(112);
 						((ExpressionContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
-						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__18) | (1L << T__19) | (1L << T__20) | (1L << T__21))) != 0)) ) {
+						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__18) | (1L << T__19) | (1L << T__20) | (1L << T__21) | (1L << T__22) | (1L << T__23))) != 0)) ) {
 							((ExpressionContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 						}
 						else {
@@ -927,7 +927,7 @@ public class HashParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\33z\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\35z\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4"+
 		"\f\t\f\3\2\7\2\32\n\2\f\2\16\2\35\13\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3"+
 		"\3\3\5\3(\n\3\3\4\3\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\6\3\6\3\7\3\7\3\7"+
@@ -936,14 +936,14 @@ public class HashParser extends Parser {
 		"\b\3\b\3\b\3\t\3\t\3\n\3\n\3\13\3\13\3\13\3\13\3\13\3\f\3\f\3\f\3\f\3"+
 		"\f\3\f\3\f\5\fj\n\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\7\fu\n\f\f\f\16"+
 		"\fx\13\f\3\f\2\3\26\r\2\4\6\b\n\f\16\20\22\24\26\2\6\3\2\4\5\3\2\21\22"+
-		"\3\2\23\24\3\2\25\30\2~\2\33\3\2\2\2\4\'\3\2\2\2\6)\3\2\2\2\b.\3\2\2\2"+
+		"\3\2\23\24\3\2\25\32\2~\2\33\3\2\2\2\4\'\3\2\2\2\6)\3\2\2\2\b.\3\2\2\2"+
 		"\n\62\3\2\2\2\f\64\3\2\2\2\16L\3\2\2\2\20Y\3\2\2\2\22[\3\2\2\2\24]\3\2"+
 		"\2\2\26i\3\2\2\2\30\32\5\4\3\2\31\30\3\2\2\2\32\35\3\2\2\2\33\31\3\2\2"+
 		"\2\33\34\3\2\2\2\34\36\3\2\2\2\35\33\3\2\2\2\36\37\7\2\2\3\37\3\3\2\2"+
 		"\2 (\5\6\4\2!(\5\b\5\2\"(\5\f\7\2#(\5\16\b\2$(\5\24\13\2%(\5\20\t\2&("+
 		"\5\22\n\2\' \3\2\2\2\'!\3\2\2\2\'\"\3\2\2\2\'#\3\2\2\2\'$\3\2\2\2\'%\3"+
-		"\2\2\2\'&\3\2\2\2(\5\3\2\2\2)*\5\n\6\2*+\7\31\2\2+,\7\3\2\2,-\5\26\f\2"+
-		"-\7\3\2\2\2./\7\31\2\2/\60\7\3\2\2\60\61\5\26\f\2\61\t\3\2\2\2\62\63\t"+
+		"\2\2\2\'&\3\2\2\2(\5\3\2\2\2)*\5\n\6\2*+\7\33\2\2+,\7\3\2\2,-\5\26\f\2"+
+		"-\7\3\2\2\2./\7\33\2\2/\60\7\3\2\2\60\61\5\26\f\2\61\t\3\2\2\2\62\63\t"+
 		"\2\2\2\63\13\3\2\2\2\64\65\7\6\2\2\65\66\7\7\2\2\66\67\5\26\f\2\678\7"+
 		"\b\2\289\7\t\2\29=\7\n\2\2:<\5\4\3\2;:\3\2\2\2<?\3\2\2\2=;\3\2\2\2=>\3"+
 		"\2\2\2>@\3\2\2\2?=\3\2\2\2@J\7\13\2\2AB\7\f\2\2BF\7\n\2\2CE\5\4\3\2DC"+
@@ -952,7 +952,7 @@ public class HashParser extends Parser {
 		"\2PT\7\n\2\2QS\5\4\3\2RQ\3\2\2\2SV\3\2\2\2TR\3\2\2\2TU\3\2\2\2UW\3\2\2"+
 		"\2VT\3\2\2\2WX\7\13\2\2X\17\3\2\2\2YZ\7\16\2\2Z\21\3\2\2\2[\\\7\17\2\2"+
 		"\\\23\3\2\2\2]^\7\20\2\2^_\7\7\2\2_`\5\26\f\2`a\7\b\2\2a\25\3\2\2\2bc"+
-		"\b\f\1\2cj\7\31\2\2dj\7\32\2\2ef\7\7\2\2fg\5\26\f\2gh\7\b\2\2hj\3\2\2"+
+		"\b\f\1\2cj\7\33\2\2dj\7\34\2\2ef\7\7\2\2fg\5\26\f\2gh\7\b\2\2hj\3\2\2"+
 		"\2ib\3\2\2\2id\3\2\2\2ie\3\2\2\2jv\3\2\2\2kl\f\6\2\2lm\t\3\2\2mu\5\26"+
 		"\f\7no\f\5\2\2op\t\4\2\2pu\5\26\f\6qr\f\4\2\2rs\t\5\2\2su\5\26\f\5tk\3"+
 		"\2\2\2tn\3\2\2\2tq\3\2\2\2ux\3\2\2\2vt\3\2\2\2vw\3\2\2\2w\27\3\2\2\2x"+
