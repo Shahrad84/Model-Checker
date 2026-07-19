@@ -48,9 +48,8 @@ printStatement
     : PRINT '(' expression ')'
     ;
 
-/*********************
- * Expressions
- *********************/
+
+ // Expressions
 
 expression
     : comparison
@@ -76,9 +75,7 @@ primary
     | '(' expression ')'
     ;
 
-/*********************
- * Keywords
- *********************/
+ // Keywords
 
 ADAD      : 'adad';
 BOOLE     : 'boole';
@@ -97,9 +94,7 @@ PRINT     : 'print';
 TRUE      : 'dorost';
 FALSE     : 'ghalat';
 
-/*********************
- * Operators
- *********************/
+ // Operators
 
 PLUS : '+';
 MINUS: '-';
@@ -113,9 +108,7 @@ GE   : '>=';
 EQ   : '==';
 NEQ  : '!=';
 
-/*********************
- * Tokens
- *********************/
+ // Tokens
 
 IDENTIFIER
     : [a-zA-Z_][a-zA-Z0-9_]*

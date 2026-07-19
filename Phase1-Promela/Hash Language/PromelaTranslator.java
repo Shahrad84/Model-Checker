@@ -6,14 +6,17 @@ public class PromelaTranslator extends HashBaseVisitor<String> {
     private StringBuilder globalVars = new StringBuilder();
     private StringBuilder bodyCode = new StringBuilder();
     
+
     // Indentation helper
     private String indent = "    ";
     private int indentLevel = 0;
     
+
     // Loop counters and tracking
     private int loopCounter = 0;
     private Stack<String> loopNames = new Stack<>();
     
+
     // Helper to add indentation
     private String getIndent() {
         String result = "";
@@ -23,14 +26,15 @@ public class PromelaTranslator extends HashBaseVisitor<String> {
         return result;
     }
 
+
     @Override
-    public String visitProgram(HashParser.ProgramContext ctx) {
-        // First, visit all statements and collect body code
-        for (HashParser.StatementContext stmt : ctx.statement()) {
+    public String visitProgram(HashParser.ProgramContext ctx){
+
+        // visit all statements and collect body code
+        for(HashParser.StatementContext stmt : ctx.statement()){
             bodyCode.append(visit(stmt));
         }
         
-        // Build final output
         String output = "";
         output += globalVars.toString();
         output += "\n";
@@ -90,7 +94,6 @@ public class PromelaTranslator extends HashBaseVisitor<String> {
             globalVars.append("bool " + name + " = " + value + ";\n");
         }
         
-        // Assignment doesn't generate code in the body
         return "";
     }
 
@@ -116,27 +119,34 @@ public class PromelaTranslator extends HashBaseVisitor<String> {
         String result = "";
         String condition = visit(ctx.expression());
         
+
         // Start if statement
         result += getIndent() + "if\n";
         result += getIndent() + ":: (" + condition + ") ->\n";
         
+
         // Count how many statements are in the then branch
         int totalStmts = ctx.statement().size();
         int thenCount = totalStmts;
         
+
         // Check if there's an else branch
         boolean hasElse = (ctx.VAGARNA() != null);
         if (hasElse) {
             thenCount = totalStmts / 2;
         }
+
         
         // Process then branch statements
         indentLevel++;
         for (int i = 0; i < thenCount; i++) {
             result += visit(ctx.statement(i));
         }
+
         indentLevel--;
         
+
+
         // Process else branch
         result += getIndent() + ":: else ->\n";
         indentLevel++;
@@ -145,17 +155,22 @@ public class PromelaTranslator extends HashBaseVisitor<String> {
             for (int i = thenCount; i < totalStmts; i++) {
                 result += visit(ctx.statement(i));
             }
-        } else {
+
+        }
+        else{
             // No else branch, just skip
             result += getIndent() + "skip;\n";
         }
+
         indentLevel--;
         
+
         // End if statement
         result += getIndent() + "fi;\n";
         
         return result;
     }
+
 
     @Override
     public String visitWhileLoop(HashParser.WhileLoopContext ctx) {
@@ -170,17 +185,18 @@ public class PromelaTranslator extends HashBaseVisitor<String> {
         loopNames.push(loopName);
         
         // Generate loop code
-        // The label MUST be before the do statement for edame to work
         result += getIndent() + loopName + "_start:\n";
         result += getIndent() + "do\n";
         result += getIndent() + ":: (" + condition + ") ->\n";
         
+
         // Process loop body with increased indent
         indentLevel++;
         for (HashParser.StatementContext stmt : ctx.statement()) {
             result += visit(stmt);
         }
         indentLevel--;
+        
         
         // Add else branch to exit the loop
         result += getIndent() + ":: else -> break\n";
@@ -194,20 +210,23 @@ public class PromelaTranslator extends HashBaseVisitor<String> {
 
     @Override
     public String visitEdameStatement(HashParser.EdameStatementContext ctx) {
-        // edame means "continue" - go to loop start
+
+        // go to loop start
         if (loopNames.isEmpty()) {
-            // This shouldn't happen if the code is correct
             throw new RuntimeException("Error: 'edame' used outside of a loop!");
         }
         
+
         // Get the current loop name from stack and generate goto
         String currentLoop = loopNames.peek();
         return getIndent() + "goto " + currentLoop + "_start;\n";
     }
 
+
+
     @Override
     public String visitShekanStatement(HashParser.ShekanStatementContext ctx) {
-        // shekan means "break" - exit the loop
+        // break - exit the loop
         if (loopNames.isEmpty()) {
             throw new RuntimeException("Error: 'shekan' used outside of a loop!");
         }
@@ -216,11 +235,13 @@ public class PromelaTranslator extends HashBaseVisitor<String> {
         return getIndent() + "break;\n";
     }
 
+
     @Override
     public String visitPrintStatement(HashParser.PrintStatementContext ctx) {
         String expr = visit(ctx.expression());
         return getIndent() + "printf(\"%d\\n\", " + expr + ");\n";
     }
+
 
     @Override
     public String visitExpression(HashParser.ExpressionContext ctx) {
@@ -228,11 +249,13 @@ public class PromelaTranslator extends HashBaseVisitor<String> {
         return visit(ctx.comparison());
     }
 
+
     // Helper method to convert expression to string
     private String exprToString(HashParser.ExpressionContext ctx) {
         if (ctx == null) return "";
         return visit(ctx);
     }
+
 
     @Override
     public String visitComparison(HashParser.ComparisonContext ctx) {
@@ -264,6 +287,7 @@ public class PromelaTranslator extends HashBaseVisitor<String> {
         return result;
     }
 
+
     @Override
     public String visitAddition(HashParser.AdditionContext ctx) {
         // Get the first multiplication
@@ -271,8 +295,8 @@ public class PromelaTranslator extends HashBaseVisitor<String> {
         
         // Process additions and subtractions
         int numMultiplications = ctx.multiplication().size();
+
         for (int i = 1; i < numMultiplications; i++) {
-            // Find the operator (PLUS or MINUS)
             String op = "";
             for (int j = 0; j < ctx.getChildCount(); j++) {
                 String childText = ctx.getChild(j).getText();
@@ -290,6 +314,7 @@ public class PromelaTranslator extends HashBaseVisitor<String> {
         return result;
     }
 
+
     @Override
     public String visitMultiplication(HashParser.MultiplicationContext ctx) {
         // Get the first primary
@@ -298,7 +323,9 @@ public class PromelaTranslator extends HashBaseVisitor<String> {
         // Process multiplications and divisions
         int numPrimaries = ctx.primary().size();
         for (int i = 1; i < numPrimaries; i++) {
+
             // Find the operator (MUL or DIV)
+
             String op = "";
             for (int j = 0; j < ctx.getChildCount(); j++) {
                 String childText = ctx.getChild(j).getText();
@@ -309,6 +336,8 @@ public class PromelaTranslator extends HashBaseVisitor<String> {
                     }
                 }
             }
+
+
             String right = visit(ctx.primary(i));
             result = "(" + result + " " + op + " " + right + ")";
         }
@@ -318,6 +347,7 @@ public class PromelaTranslator extends HashBaseVisitor<String> {
 
     @Override
     public String visitPrimary(HashParser.PrimaryContext ctx) {
+        
         // Handle different primary types
         if (ctx.NUMBER() != null) {
             return ctx.NUMBER().getText();

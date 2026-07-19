@@ -6,8 +6,8 @@ import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) {
-        // Get input and output filenames from command line
+    public static void main(String[] args){
+
         String inputFile = "test.hash";
         String outputFile = "output.pml";
         
@@ -19,16 +19,16 @@ public class Main {
         }
         
         try {
-            // Step 1: Read the input file
+            // - 1: Read input
             System.out.println("Reading file: " + inputFile);
             CharStream input = CharStreams.fromFileName(inputFile);
             
-            // Step 2: Create lexer and parser
+            // - 2: Create lexer and parser
             HashLexer lexer = new HashLexer(input);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             HashParser parser = new HashParser(tokens);
             
-            // Step 3: Add error handling
+            // - 3: Add error handling
             parser.removeErrorListeners();
             parser.addErrorListener(new BaseErrorListener() {
                 @Override
@@ -44,29 +44,29 @@ public class Main {
                 }
             });
             
-            // Step 4: Parse the input
+            // - 4: Parse the input
             System.out.println("Parsing...");
             HashParser.ProgramContext tree = parser.program();
             
-            // Step 5: Translate to Promela
+            // - 5: Translate to Promela
             System.out.println("Translating to Promela...");
             PromelaTranslator translator = new PromelaTranslator();
             String promelaCode = translator.visit(tree);
             
-            // Step 6: Write output file
+            // - 6: Write output file
             System.out.println("Writing output to: " + outputFile);
             FileWriter writer = new FileWriter(outputFile);
             writer.write(promelaCode);
             writer.close();
             
-            // Step 7: Show success message
+            // - 7: Show success message
             System.out.println("==========================================");
             System.out.println("SUCCESS! Translation completed.");
             System.out.println("Input file:  " + inputFile);
             System.out.println("Output file: " + outputFile);
             System.out.println("==========================================");
             
-            // Optional: Print the generated code
+            // Print the generated code
             System.out.println("\nGenerated Promela Code:");
             System.out.println("------------------------------------------");
             System.out.println(promelaCode);
