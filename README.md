@@ -1,6 +1,6 @@
 # Model-Checker---Theory-of-Languages-Machines
 
-That is a projct of Teory of Languages and Machines developed via Shahrad Langari & HamidReza Nejad
+That is a projct of Teory of Languages and Machines developed via Shahrad Langari
 
 ## run these three commands to run ANTLR and compile has file and output.pml :
 
